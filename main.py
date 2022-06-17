@@ -7,6 +7,11 @@ from aiohttp_middlewares import cors_middleware
 routes = web.RouteTableDef()
 
 
+@routes.get('/')
+async def index(request):
+    return web.json_response({'status': 'ok'})
+
+
 @routes.post('/cdn')
 async def make_cdn(request: web.Request):
     project_key = request.headers.get('DETA-PROJECT-KEY')
