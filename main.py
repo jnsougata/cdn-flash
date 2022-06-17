@@ -28,6 +28,7 @@ async def make_cdn(request: web.Request):
 
 
 async def run():
+    """Binds the app to an available port and runs the server."""
     app = web.Application(middlewares=[cors_middleware(allow_all=True)])
     app.add_routes(routes)
     return app
