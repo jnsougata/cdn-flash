@@ -1,4 +1,4 @@
 gunicorn
-aiohttp==3.8.1
-aiohttp_middlewares==1.2.1
+aiohttp
+aiohttp_middlewares
 git+https://github.com/jnsougata/async-deta
