@@ -1,4 +1,4 @@
-gunicorn
 aiohttp
+gunicorn
 aiohttp_middlewares
 git+https://github.com/jnsougata/async-deta
