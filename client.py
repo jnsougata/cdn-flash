@@ -5,9 +5,9 @@ import asyncio
 async def main():
     async with aiohttp.ClientSession() as session:
         headers = {
-            'DETA-PROJECT-KEY': ...'),
+            'DETA-PROJECT-KEY': ...,
             'DRIVE-NAME': ...,
-            'FILE-NAME': ...'
+            'FILE-NAME': ...
         }
         async with session.post('https://cdn-flash.herokuapp.com/cdn', headers=headers) as resp:
             print(await resp.json())

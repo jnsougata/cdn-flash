@@ -6,6 +6,7 @@ from aiohttp_middlewares import cors_middleware
 
 
 routes = web.RouteTableDef()
+MAX_SIZE = 50 * 1024 * 1024
 
 
 @routes.get('/')
@@ -33,7 +34,7 @@ async def make_cdn(request: web.Request):
     file = await drive.get(file_name)
     local_name = f"{project_id}_{file_name.split('/')[-1]}"
     with open(local_name, 'wb') as f:
-        f.write(file.read())
+        f.write(file.read(MAX_SIZE))
     await deta.close()
 
     async def schedule_deletion():
