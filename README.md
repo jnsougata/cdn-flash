@@ -5,9 +5,10 @@
 
 
 # ⚠️ warning
-- Requires Deta project key inside headers to cache file from drive
-- No project key is being stored or used by the developer
 - Auto destroys file after 5 minutes
+- Requires Deta project key inside headers to cache file from drive
+- No project key is being stored or used by the developer (check source)
+
 
 # 🔗 endpoints
 `root` https://cdn-flash.herokuapp.com
@@ -23,3 +24,5 @@
       ```
   - _JSON response_
     `{"url": "https://cdn-flash.herokuapp.com/file/{project_id}_{file_name}"}`
+    
+  - _Access cdn asset at_ https://cdn-flash.herokuapp.com/file/{project_id}_{file_name}
