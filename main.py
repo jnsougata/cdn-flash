@@ -29,7 +29,17 @@ async def make_cdn(request: web.Request):
     await deta.connect()
     drive = deta.drive(drive_name)
     file = await drive.get(file_name)
-    return web.Response(body=file.read(), content_type='image/png')
+    local_name = file.name.split('/')[-1]
+    with open(local_name, 'wb') as f:
+        f.write(await file.read())
+    return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{file_name}'})
+
+
+@routes.get('/file/{file_name}')
+async def get_file(request: web.Request):
+    file_name = request.match_info['file_name']
+    if file_name:
+        return web.FileResponse(file_name)
 
 
 async def run():
@@ -37,3 +47,6 @@ async def run():
     app = web.Application(middlewares=[cors_middleware(allow_all=True)])
     app.add_routes(routes)
     return app
+
+if __name__ == '__main__':
+    web.run_app(run())
