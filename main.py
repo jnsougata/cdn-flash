@@ -40,22 +40,21 @@ async def make_cdn(request: web.Request):
     async def schedule_deletion():
         await asyncio.sleep(300)
         os.remove(local_name)
-
     asyncio.create_task(schedule_deletion())
-
-    return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{local_name}'})
+    return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{local_name}'}, status=200)
 
 
 @routes.get('/file/{file_name}')
 async def get_file(request: web.Request):
     file_name = request.match_info['file_name']
-    if file_name:
-        return web.FileResponse(file_name)
+    if file_name and os.path.exists(file_name):
+        return web.FileResponse(file_name, status=200)
+    return web.json_response({'error': 'File not found'}, status=404)
 
 
 async def run():
     """Binds the app to an available port and runs the server."""
-    print('[---------- Server Running -----------]')
+    print('[----- Running -----]')
     app = web.Application(middlewares=[cors_middleware(allow_all=True)])
     app.add_routes(routes)
     return app
