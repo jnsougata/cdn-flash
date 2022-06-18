@@ -1,3 +1,4 @@
+import os
 import asyncio
 from aiohttp import web
 from asyncdeta import Deta
@@ -25,14 +26,22 @@ async def make_cdn(request: web.Request):
             },
             status=400
         )
+    project_id = project_key.split('_')[0]
     deta = Deta(project_key)
     await deta.connect()
     drive = deta.drive(drive_name)
     file = await drive.get(file_name)
-    local_name = file_name.split('/')[-1]
+    local_name = f"{project_id}_{file_name.split('/')[-1]}"
     with open(local_name, 'wb') as f:
         f.write(file.read())
     await deta.close()
+
+    async def schedule_deletion():
+        await asyncio.sleep(300)
+        os.remove(local_name)
+
+    asyncio.create_task(schedule_deletion())
+
     return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{local_name}'})
 
 
