@@ -25,4 +25,5 @@
   - _JSON response_
     `{"url": "https://cdn-flash.herokuapp.com/file/{project_id}_{file_name}"}`
     
-  - _Access cdn asset at_ https://cdn-flash.herokuapp.com/file/{project_id}_{file_name}
+  - _access cdn asset:_ https://cdn-flash.herokuapp.com/file/{project_id}_{file_name}
+  - _sample asset:_ https://cdn-flash.herokuapp.com/file/default_card.png
