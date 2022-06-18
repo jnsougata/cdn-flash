@@ -32,6 +32,7 @@ async def make_cdn(request: web.Request):
     local_name = file.name.split('/')[-1]
     with open(local_name, 'wb') as f:
         f.write(await file.read())
+    await deta.close()
     return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{file_name}'})
 
 
