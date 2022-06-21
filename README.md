@@ -17,13 +17,13 @@
   - _header format_
       ``` 
       {
-          'DETA-PROJECT-KEY': <YOUR-DETA-PROJECT-KEY>, 
-          'DRIVE-NAME': <TARGET-DRIVE-NAME> , 
-          'FILE-NAME': <TARGET-FILE-PATH>
+        'DETA-PROJECT-KEY': <YOUR-DETA-PROJECT-KEY>, 
+        'DETA-DRIVE-NAME': <TARGET-DRIVE-NAME> , 
+        'DETA-FILE-NAME': <TARGET-FILE-PATH>
        }
       ```
   - _JSON response_
-    `{"url": "https://cdn-flash.herokuapp.com/file/<project_id>_<file_name>"}`
-    
-  - _cdn asset url:_ https://cdn-flash.herokuapp.com/assets/<project_id>_<file_name>
-  - _sample asset url:_ https://cdn-flash.herokuapp.com/assets/default_card.png
+    `{"url": "https://cdn-flash.herokuapp.com/file/{file_hash}.{file_extension}"}`
+
+  - _sample asset url:_ https://cdn-flash.herokuapp.com/file/pcb7qy80h7eyak4rvxgp4w.png
+
