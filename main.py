@@ -38,7 +38,7 @@ async def convert_to_asset(request: web.Request):
     await deta.connect()
     drive = deta.drive(drive_name)
     file = await drive.get(file_name)
-    file_hash = secrets.token_urlsafe(16).lower()
+    file_hash = secrets.token_hex(16)
     file_extension = file_name.split('.')[-1]
     path = f"{file_hash}.{file_extension}" if file_extension else f"{file_hash}"
     with open(path, 'wb') as f:

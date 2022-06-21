@@ -13,7 +13,7 @@
 # 🔗 endpoints
 `root` https://cdn-flash.herokuapp.com
 
-- **POST** `/url`
+- **GET** `/url`
   - _header format_
       ``` 
       {
