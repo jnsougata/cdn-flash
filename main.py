@@ -15,12 +15,6 @@ async def index(request):
     return web.json_response({'status': 'ok'})
 
 
-@routes.post('/upload')
-async def upload(request: web.Request):
-    """Uploads a file to the server. will be added soon"""
-    return web.json_response({'status': 'ok'})
-
-
 @routes.get('/url')
 async def convert_to_asset(request: web.Request):
     project_key = request.headers.get('DETA-PROJECT-KEY')
