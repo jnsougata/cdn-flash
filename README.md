@@ -1,11 +1,11 @@
 # ☁️ cdn-flash
-- A minimal cdn for deta drive files. 
-- Works only with files size less than 50mb
+- A minimal cdn for deta drive files 
+- Works only with files size <= 100MB
 - Suitable to deliver image. Other file types should work as well
 
 
 # ⚠️ warning
-- Auto destroys file after 5 minutes
+- Auto destroys file after 1 hour
 - Requires Deta project key inside headers to cache file from drive
 - No project key is being stored or used by the developer (check source)
 
