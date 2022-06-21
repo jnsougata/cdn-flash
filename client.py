@@ -9,7 +9,7 @@ async def main():
             'DRIVE-NAME': ...,
             'FILE-NAME': ...
         }
-        async with session.post('https://cdn-flash.herokuapp.com/cdn', headers=headers) as resp:
+        async with session.post('https://cdn-flash.herokuapp.com/url', headers=headers) as resp:
             print(await resp.json())
             await session.close()
 
