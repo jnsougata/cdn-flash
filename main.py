@@ -32,18 +32,22 @@ async def convert_to_asset(request: web.Request):
     await deta.connect()
     drive = deta.drive(drive_name)
     file = await drive.get(file_name)
-    file_hash = secrets.token_hex(16)
+    file_hash = secrets.token_hex(8)
+    safe_name = file_name.split('.')[0].replace(' ', '_').replace('-', '_').replace('/', '_')
     file_extension = file_name.split('.')[-1]
-    path = f"{file_hash}.{file_extension}" if file_extension else f"{file_hash}"
-    with open(path, 'wb') as f:
+    file_loc = f"{safe_name}_{file_hash}"
+    if file_extension:
+        file_loc += f".{file_extension}"
+    with open(file_loc, 'wb') as f:
         f.write(file.read(MAX_SIZE))
     await deta.close()
 
     async def schedule_deletion():
         await asyncio.sleep(3600)
-        os.remove(path)
+        os.remove(file_loc)
     asyncio.create_task(schedule_deletion())
-    return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{path}'}, status=200)
+
+    return web.json_response({'url': f'https://cdn-flash.herokuapp.com/file/{file_loc}'}, status=200)
 
 
 @routes.get('/file/{file_name}')
